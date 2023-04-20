@@ -1,0 +1,32 @@
+[2023-03-28 07:31:37 +0000] INFO (440): Request Completed
+    reqId: "req-4"
+    contentLog: {
+      "protocol": "http",
+      "path": "/api/v1/",
+      "method": "GET",
+      "statusCode": 200,
+      "statusMessage": "OK"
+    }
+[2023-03-28 07:31:37 +0000] ERROR (440): premature close
+    reqId: "req-4"
+    err: {
+      "type": "Error",
+      "message": "premature close",
+      "stack":
+          Error: premature close
+              at onclosenexttick (C:\xampp\htdocs\template_fastify\node_modules\end-of-stream\index.js:54:86)
+              at processTicksAndRejections (node:internal/process/task_queues:77:11)
+    }
+[2023-03-28 07:35:39 +0000] INFO (25940): Server listening at http://[::1]:8080
+[2023-03-28 07:35:39 +0000] INFO (25940): Server listening at http://127.0.0.1:8080
+[2023-03-28 07:35:39 +0000] INFO (25940): Server NodeJs Fastify ORM KnexJs with Postgresql AND MongoDB is running on http://[::1]:8080
+[2023-03-28 07:35:46 +0000] INFO (25940): Request Completed
+    reqId: "req-1"
+    contentLog: {
+      "ip": "::1",
+      "protocol": "http",
+      "path": "/api/v1/",
+      "method": "GET",
+      "statusCode": 200,
+      "statusMessage": "OK"
+    }

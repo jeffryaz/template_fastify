@@ -1,0 +1,46 @@
+[2023-04-05 07:43:09 +0000] INFO (20932): Request Completed
+    reqId: "req-yjx"
+    contentLog: {
+      "ip": "::1",
+      "protocol": "http",
+      "path": "/api/v1/",
+      "method": "GET",
+      "statusCode": 200,
+      "statusMessage": "OK"
+    }
+[2023-04-05 07:43:09 +0000] INFO (20932): Route GET:/favicon.ico not found
+    reqId: "req-yjy"
+[2023-04-05 07:43:09 +0000] ERROR (20932): Parsed Error
+    reqId: "req-yjy"
+    contentLog: {
+      "ip": "::1",
+      "protocol": "http",
+      "path": "/favicon.ico",
+      "method": "GET",
+      "params": {
+        "*": "favicon.ico"
+      },
+      "query": {},
+      "body": "null",
+      "header": {
+        "host": "localhost:8080",
+        "connection": "keep-alive",
+        "pragma": "no-cache",
+        "cache-control": "no-cache",
+        "sec-ch-ua": "\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\"",
+        "dnt": "1",
+        "sec-ch-ua-mobile": "?0",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "no-cors",
+        "sec-fetch-dest": "image",
+        "referer": "http://localhost:8080/api/v1/",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "id-ID,id;q=0.9,en-ID;q=0.8,en;q=0.7,en-US;q=0.6"
+      },
+      "statusCode": 404,
+      "statusMessage": "Route GET:/favicon.ico not found",
+      "stack": null
+    }

@@ -1,0 +1,4 @@
+dist/*
+node_modules
+test_k6
+log

@@ -1,0 +1,7 @@
+FROM node:16.14.2-alpine
+WORKDIR /build
+COPY . .
+# RUN npm i
+# RUN npm run start
+# EXPOSE 8080
+# CMD ["npm", "run", "start"]

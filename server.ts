@@ -5,6 +5,7 @@ import websocket from '@fastify/websocket';
 import cors from '@fastify/cors';
 import compress from '@fastify/compress';
 import moment from 'moment';
+import rateLimit from '@fastify/rate-limit';
 
 
 import router from './src/routes/router';
@@ -35,6 +36,10 @@ const f: FastifyInstance = fastify(
 );
 
 // const ENV_IP: any = process.env.ENV_IP;
+f.register(rateLimit, {
+    max: 100,
+    timeWindow: '1 minute'
+});
 f.register(fastifyPlugin);
 f.register(multipart);
 f.register(formbody);

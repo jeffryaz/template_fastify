@@ -1,1 +1,1 @@
-export * from './sample.controller';
+export * from './sample.controller';export * from './botTelegram.controller';

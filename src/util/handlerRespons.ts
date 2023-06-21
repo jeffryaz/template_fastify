@@ -1,4 +1,5 @@
-import { FastifyReply, FastifyRequest } from "fastify";
+import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { botTelegram } from "../constant/variabel";
 
 interface dataRespons {
     code: number,
@@ -15,7 +16,6 @@ export const errorRespons = async (reply: FastifyReply, error: any): Promise<any
 }
 
 export const resultRespont = async (reply: FastifyReply, data: dataRespons): Promise<any> => {
-
     return reply.code(data.code).send(data.data);
 }
 
@@ -34,4 +34,14 @@ export const requestClosedRespont = async (request: FastifyRequest, reply: Fasti
             return resultRespont(reply, error);
         }
     })
+}
+export const errorBotTelegram = (f: FastifyInstance, error: any, ctx: any): void => {
+    const dataError = {
+        error: "Controller Telegram Error",
+        message: error.message,
+        stack: error.stack
+    }
+    f.log.error(dataError);
+    botTelegram.telegram.sendMessage(ctx.chat.id, JSON.stringify(dataError, null, "\t"), {
+    });
 }

@@ -4,6 +4,7 @@ import swaggerUi from '@fastify/swagger-ui';
 import routerSample from './sample/index';
 import { PORT } from '../constant/variabel';
 const ENV_IP: any = process.env.ENV_IP;
+let socket: any = null;
 
 
 // interface IQuery {
@@ -29,8 +30,14 @@ const ENV_IP: any = process.env.ENV_IP;
 //     await reply.send({ hello: 'word' })
 // });
 
+const subscribe = (socket: any): void => {
+    socket.on("hello", (arg: any) => {
+        console.log(arg); // world
+    });
+}
+
 const router = {
-    async init(f: FastifyInstance) {
+    async init(f: FastifyInstance): Promise<void> {
         f.register(swagger, {
             swagger: {
                 info: {
@@ -84,9 +91,43 @@ const router = {
             });
         }
         f.register(routerSample, { prefix: 'api/v1' });
+        // f.register(routerSocket, { prefix: 'api/v1/socket' });
         // app.use(error);
-        await f.ready();
+        await f.ready(err => {
+            if (err) throw err;
+            f.io.on('connection', (sockets: any) => {
+                socket = sockets;
+                console.info('Socket connected!', socket.id)
+                // console.info('socket', socket);
+                console.info('socket.rooms', socket.rooms)
+                console.log("initial transport", socket.conn.transport.name); // prints "polling"
+                subscribe(socket);
+
+                socket.conn.once("upgrade", () => {
+                    // called when the transport is upgraded (i.e. from HTTP long-polling to WebSocket)
+                    console.log("upgraded transport", socket.conn.transport.name); // prints "websocket"
+                });
+
+                socket.conn.on("packet", ({ type, data }: any) => {
+                    // called for each packet received
+                });
+
+                socket.conn.on("packetCreate", ({ type, data }: any) => {
+                    // called for each packet sent
+                });
+
+                socket.conn.on("drain", () => {
+                    // called when the write buffer is drained
+                });
+
+                socket.conn.on("close", (reason: any) => {
+                    // called when the underlying connection is closed
+                    console.log('reason', reason);
+
+                });
+            })
+        });
     },
 };
 
-export default router;
+export { router, socket };

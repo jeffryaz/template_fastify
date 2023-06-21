@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
-import { sample } from "../../controllers";
+import { Sample } from "../../controllers";
 
 const routerSample = (fastify: FastifyInstance, opts: any, done: any) => {
-    fastify.get('/', sample);
+    fastify.get('/', Sample);
     done();
 }
 
